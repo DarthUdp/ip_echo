@@ -1,7 +1,7 @@
 import json
+import os
 from http import HTTPStatus
 
-import werkzeug
 from flask import Flask, request, Response, render_template
 from marko.ext.gfm import gfm
 from uuid import uuid4
@@ -11,16 +11,15 @@ import sqlite3
 from markupsafe import escape
 
 app = Flask(__name__)
-
-def read_file(path):
-    with open(path) as fp:
-        return fp.read()
+settings = {}
+with open(os.getenv("IP_ECHO_CFG_PATH"), encoding="utf-8") as sf:
+    settings = json.load(sf)
 
 
 @app.route('/')
 def hello_world():
     motdl = []
-    conn = sqlite3.connect("app/motd.db")
+    conn = sqlite3.connect(settings["motd_db_path"])
     c = conn.cursor()
     for msg in c.execute("""SELECT * FROM `motd` WHERE `motd`.`valid` = 1"""):
         motdl.append(gfm(msg[1]))
