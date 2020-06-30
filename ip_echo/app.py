@@ -1,6 +1,7 @@
 import json
 from http import HTTPStatus
 
+import werkzeug
 from flask import Flask, request, Response, render_template
 from marko.ext.gfm import gfm
 from uuid import uuid4
@@ -60,4 +61,4 @@ def return_rendered(ext):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="127.0.0.1")
