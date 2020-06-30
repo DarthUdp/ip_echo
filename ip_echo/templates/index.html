@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+        .content {
+            width: 1000px;
+        }
+        *{
+            font-family: sans-serif;
+        }
+        th {
+            border-style: solid;
+            border-width: 1px;
+            padding: 5px;
+        }
+        td {
+            border-style: solid;
+            border-width: 1px;
+            padding: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to the ip-echo servlet</title>
+</head>
+<body>
+<div class="content">
+    {{markdown_rendered|safe}}
+    {% if motdl %}
+    <h2>Admin messages:</h2>
+    {% for m in motdl %}
+    <div>
+        {{ m|safe }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <h3>Request id:</h3>
+    {{request_id}}
+    <h4>Contact</h4>
+    &lt;cbATbpmxDOTio&gt;
+</div>
+</body>
+</html>
