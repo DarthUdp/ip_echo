@@ -12,7 +12,7 @@ from markupsafe import escape
 
 app = Flask(__name__)
 settings = {}
-with open(os.getenv("IP_ECHO_CFG_PATH"), encoding="utf-8") as sf:
+with open(os.getenv("IPE_CFG_PATH"), encoding="utf-8") as sf:
     settings = json.load(sf)
 
 
