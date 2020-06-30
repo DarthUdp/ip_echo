@@ -20,7 +20,7 @@ def read_file(path):
 @app.route('/')
 def hello_world():
     motdl = []
-    conn = sqlite3.connect("ip_echo/motd.db")
+    conn = sqlite3.connect("app/motd.db")
     c = conn.cursor()
     for msg in c.execute("""SELECT * FROM `motd` WHERE `motd`.`valid` = 1"""):
         motdl.append(gfm(msg[1]))
