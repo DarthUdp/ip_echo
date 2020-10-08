@@ -7,4 +7,4 @@ RUN ["pip", "install", "-r", "requirements.txt"]
 EXPOSE 8080
 ENV PYTHONPATH "${PYTHONPATH}:/code/app"
 
-CMD ["gunicorn", "--bind", "localhost:8080", "wsgi:app"]
+ENTRYPOINT ["gunicorn", "--bind", "localhost:8080", "wsgi:app"]
