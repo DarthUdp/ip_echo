@@ -11,18 +11,11 @@ import sqlite3
 from markupsafe import escape
 
 app = Flask(__name__)
-settings = {}
-with open(os.getenv("IPE_CFG_PATH"), encoding="utf-8") as sf:
-    settings = json.load(sf)
 
 
 @app.route('/')
 def hello_world():
     motdl = []
-    conn = sqlite3.connect(settings["motd_db_path"])
-    c = conn.cursor()
-    for msg in c.execute("""SELECT * FROM `motd` WHERE `motd`.`valid` = 1"""):
-        motdl.append(gfm(msg[1]))
     client_ip = request.remote_addr
     md = render_template("index.md", client_ip=client_ip)
     rendered_md = gfm(md)
